@@ -1,0 +1,25 @@
+name: Clean up previous workflow runs
+author: egmacke
+description: Delete previous workflow runs
+inputs:
+  repository:
+    description: The repository to work on (including owner, eg. `egmacke/acttion-cleanup-workflow-runs`)
+    required: true
+    default: ${{ github.repository }}
+  token:
+    description: The GitHub token to use for authentication
+    required: true
+    default: ${{ github.token }}
+  workflow:
+    description: The name or ID of a specific workflow to clean up - default to the current workflow name.
+    required: true
+    default: ${{ github.workflow }}
+  retain:
+    description: How many previous runs to keep
+    required: true
+    default: '10'
+  
+runs:
+  using: node12
+  main: dist/index.js
+    
