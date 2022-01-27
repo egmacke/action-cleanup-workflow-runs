@@ -18,6 +18,9 @@ inputs:
     description: How many previous runs to keep
     required: true
     default: '10'
+  branch:
+    description: Provide the name of the branch to target. Will only delete workflow runs against this branch name.
+    required: false
   
 runs:
   using: node12
