@@ -7,7 +7,8 @@ class Action {
     repo: string,
     owner: string,
     retain: number,
-    workflow: string | number
+    workflow: string | number,
+    branch?: string
   ) {
     // Get all workflow runs for repository
     const workflowRuns = await octokit.paginate(
@@ -24,6 +25,7 @@ class Action {
               name: data.name,
               workflowId: data.workflow_id,
               createdAt: data.created_at,
+              branch: data.head_branch,
             } as WorkflowRun)
         )
     );
@@ -44,6 +46,9 @@ class Action {
         moment(runA.createdAt).milliseconds() -
         moment(runB.createdAt).milliseconds()
     );
+    if (branch) {
+      runsToDelete = runsToDelete.filter((run) => run.branch == branch);
+    }
 
     // Preserve `retain` number of runs
     runsToDelete.splice(0, retain);
@@ -65,6 +70,7 @@ interface WorkflowRun {
   name: string;
   workflowId: number;
   createdAt: string;
+  branch: string;
 }
 
 export { Action };

@@ -11,11 +11,12 @@ import { Action } from "src/action";
     required: true,
   });
   const retain = parseInt(getInput("retain", { required: true }), 10);
+  const branch = getInput("branch", { required: false });
 
   const octokit = getOctokit(token);
 
   try {
-    await new Action().run(octokit, repo, owner, retain, workflow);
+    await new Action().run(octokit, repo, owner, retain, workflow, branch);
   } catch (e) {
     setFailed((e as Error).message);
   }
