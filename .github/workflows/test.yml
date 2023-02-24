@@ -1,0 +1,22 @@
+name: Test Action
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [master]
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+
+
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean up previous workflow runs
+        uses: egmacke/action-cleanup-workflow-runs@v1.3
+        with:
+          retain: 1
