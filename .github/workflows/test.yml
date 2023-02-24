@@ -17,6 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clean up previous workflow runs
-        uses: egmacke/action-cleanup-workflow-runs@v1.3
+        uses: egmacke/action-cleanup-workflow-runs@master
         with:
           retain: 1
