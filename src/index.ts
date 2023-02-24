@@ -1,6 +1,6 @@
 import { getInput, setFailed } from "@actions/core";
 import { getOctokit } from "@actions/github";
-import { Action } from "src/action";
+import { Action } from "src/action.js";
 
 (async () => {
   const token: string = getInput("token", { required: true });

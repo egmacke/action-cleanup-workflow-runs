@@ -1,4 +1,4 @@
-import { GitHub } from "@actions/github/lib/utils";
+import { GitHub } from "@actions/github/lib/utils.js";
 import moment from "moment";
 
 class Action {
